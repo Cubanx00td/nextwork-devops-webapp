@@ -1,7 +1,8 @@
 #!/bin/bash
-sudo yum install tomcat -y
+sudo yum install tomcat10 tomcat10-webapps tomcat10-admin-webapps -y
 sudo yum -y install httpd
-sudo cat << EOF > /etc/httpd/conf.d/tomcat_manager.conf
+
+sudo bash -c 'cat << EOF > /etc/httpd/conf.d/tomcat_manager.conf
 <VirtualHost *:80>
   ServerAdmin root@localhost
   ServerName app.nextwork.com
@@ -11,4 +12,4 @@ sudo cat << EOF > /etc/httpd/conf.d/tomcat_manager.conf
   ProxyPass / http://localhost:8080/nextwork-web-project/
   ProxyPassReverse / http://localhost:8080/nextwork-web-project/
 </VirtualHost>
-EOF
+EOF'
